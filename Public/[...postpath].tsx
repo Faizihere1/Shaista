@@ -5,7 +5,7 @@ import { GraphQLClient, gql } from 'graphql-request';
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
 	const endpoint = process.env.GRAPHQL_ENDPOINT as string;
-	const graphQLClient = new GraphQLClient(endpoint);
+	const graphQLClient = "http://pics.lovestoblog.com/graphql"
 	const referringURL = ctx.req.headers?.referer || null;
 	const pathArr = ctx.query.postpath as Array<string>;
 	const path = pathArr.join('/');
@@ -18,7 +18,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 			redirect: {
 				permanent: false,
 				destination: `${
-					endpoint.replace(/(\/graphql\/)/, '/') + encodeURI(path as string)
+					endpoint.replace(/(\/graphql\/)/, 'http://pics.lovestoblog.com/') + encodeURI(path as string)
 				}`,
 			},
 		};
